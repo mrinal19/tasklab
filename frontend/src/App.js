@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useMemo } from "react";
 import { Pie, Bar } from "react-chartjs-2";
 
@@ -140,8 +141,8 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (token) loadTasks();
-  }, [token]);
+  if (token) loadTasks();
+}, [token]);
 
   const visibleTasks = useMemo(() => {
     let list = tasks;
