@@ -89,12 +89,11 @@ export default function App() {
 
   // ✅ ONLY store token on SUCCESS
   if (isLogin) {
-    localStorage.setItem("token", data.token);
-    setToken(data.token);
-  } else {
-    alert("Registered! Now login.");
-    setIsLogin(true);
-  }
+  localStorage.setItem("token", data.token);
+  setToken(data.token);
+
+  window.location.reload(); // 🔥 ADD THIS LINE
+}
 }
 
   async function loadTasks() {
@@ -149,7 +148,9 @@ const data = await res.json();
   }
 
   useEffect(() => {
-  if (token) loadTasks();
+  if (token && token !== "undefined") {
+    loadTasks();
+  }
 }, [token]);
 
   const visibleTasks = useMemo(() => {
@@ -194,8 +195,10 @@ const barData = {
           <h2>{isLogin ? "Login" : "Register"}</h2>
           <input onChange={e=>setEmail(e.target.value)} placeholder="Email" style={styles.input}/>
           <input onChange={e=>setPassword(e.target.value)} type="password" placeholder="Password" style={styles.input}/>
-          <button onClick={handleAuth}>Login</button>
-        </div>
+<button onClick={handleAuth}>
+  {isLogin ? "Login" : "Register"}
+</button>
+  </div>
       </div>
     );
   }
