@@ -40,7 +40,7 @@ const centerTextPlugin = {
   }
 };
 
-const API = "https://tasklab-5ydi.onrender.com/";
+const API = "https://tasklab-5ydi.onrender.com";
 const theme = {
   bg: "linear-gradient(135deg, #0f172a, #020617)",
   card: "rgba(15, 23, 42, 0.7)",
