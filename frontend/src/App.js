@@ -51,7 +51,7 @@ const theme = {
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -190,6 +190,7 @@ const barData = {
 
   if (!token) {
     return (
+      
       <div style={styles.authWrap}>
         <div style={styles.authCard}>
           <h2>{isLogin ? "Login" : "Register"}</h2>
@@ -198,6 +199,10 @@ const barData = {
 <button onClick={handleAuth}>
   {isLogin ? "Login" : "Register"}
 </button>
+  <p style={{marginTop:"10px", cursor:"pointer"}}
+   onClick={() => setIsLogin(!isLogin)}>
+  {isLogin ? "New user? Register" : "Already have account? Login"}
+</p>
   </div>
       </div>
     );
