@@ -81,8 +81,13 @@ export default function App() {
 
   const data = await res.json();
 
-  if (!res.ok) return alert(data.error);
+  // ❗ FIRST check if error
+  if (!res.ok) {
+    alert(data.error);
+    return;
+  }
 
+  // ✅ ONLY store token on SUCCESS
   if (isLogin) {
     localStorage.setItem("token", data.token);
     setToken(data.token);
