@@ -113,8 +113,9 @@ export default function App() {
       body: JSON.stringify({ title: task })
     });
 
-    const data = await res.json();
-
+const data = await res.json();
+setTasks(Array.isArray(data) ? data : []);
+    
     if (!res.ok) return alert(data.error);
 
     setTasks(prev => [data, ...prev]);
