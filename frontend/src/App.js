@@ -71,31 +71,33 @@ export default function App() {
   }
 
   async function handleAuth() {
-    const endpoint = isLogin ? "login" : "register";
+  const endpoint = isLogin ? "login" : "register";
 
-    const res = await fetch(`${API}/${endpoint}`, {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({ email, password })
-    });
+  const res = await fetch(`${API}/${endpoint}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
 
-    const data = await res.json();
+  const data = await res.json();
 
-    if (!res.ok) return alert(data.error);
+  if (!res.ok) return alert(data.error);
 
-    if (isLogin) {
-      localStorage.setItem("token", data.token);
-      setToken(data.token);
-    } else {
-      alert("Registered! Now login.");
-      setIsLogin(true);
-    }
+  if (isLogin) {
+    localStorage.setItem("token", data.token);
+    setToken(data.token);
+  } else {
+    alert("Registered! Now login.");
+    setIsLogin(true);
   }
+}
 
   async function loadTasks() {
-    const res = await fetch(`${API}/tasks`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+   const res = await fetch(`${API}/tasks`, {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
 
     const data = await res.json();
     setTasks(Array.isArray(data) ? data : []);
@@ -114,7 +116,7 @@ export default function App() {
     });
 
 const data = await res.json();
-setTasks(Array.isArray(data) ? data : []);
+    setTasks(Array.isArray(data) ? data : []);
     
     if (!res.ok) return alert(data.error);
 
