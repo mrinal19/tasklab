@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState, useEffect, useMemo } from "react";
 import { Pie, Bar } from "react-chartjs-2";
 
